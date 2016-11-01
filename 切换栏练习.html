@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>切换栏练习</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css/global.css">
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .selected_chang{
+        width: 300px;
+        margin: 100px auto;
+    }
+    .menus .selected{
+        color: #e01121;
+        border-top-color: #e01121;
+        border-bottom:none;
+    }
+    .menus li{
+        float: left;
+        width: 47px;
+        height: 24px;
+        border-top: 1px solid #E7E7E7;
+        border-right: 1px solid #E7E7E7;
+        border-bottom: 1px solid #E7E7E7;
+        font: 12px/24px "microsoft yahei";
+        text-align: center;
+        cursor: pointer;
+    }
+    .details{
+        width: 192px;
+        height: 650px;
+    }
+    .details div{
+        height: 150px;
+        text-align: center;
+        line-height: 75px;
+        border: 1px solid #E7E7E7;
+        border-top: none;
+        display: none;
+    }
+    .details .div_selected{
+        display: block;
+    }
+</style>
+<body>
+<div class="selected_chang">
+<div class="menus">
+    <ul class="clearfix">
+        <li class="selected">话费</li>
+        <li>机票</li>
+        <li>电影票</li>
+        <li class="aa">游戏</li>
+    </ul>
+</div>
+<div class="details">
+    <div class="div_selected">内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+    <div>内容4</div>
+</div>
+</div>
+
+
+
+<!--JS写在地步便于观看-->
+<script>
+    window.onload = function () {
+        var oDiv = document.getElementsByClassName("details");
+       // alert(typeof oDiv);   oDiv是一个数组
+        var content = oDiv[0].getElementsByTagName("div");
+        var menuItem = document.getElementsByTagName("li");
+        var lastSelected = 0;
+        for (var i=0;i<menuItem.length;i++){
+            menuItem[i].selecting = i;
+            menuItem[i].onmouseover = function () {
+                menuItem[lastSelected].className = "";
+                content[lastSelected].className ="";
+                this.className="selected";
+                lastSelected = this.selecting;
+                content[this.selecting].className ="div_selected";
+                //alert(lastSelected);
+            }
+        }
+    }
+</script>
+</body>
+</html>
