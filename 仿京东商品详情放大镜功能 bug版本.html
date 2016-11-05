@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情</title>
+</head>
+<style>
+    * {margin: 0;padding: 0;}
+    .goods{
+        width: 350px;
+        height: 350px;
+        position: relative;
+        top: 100px;
+        left: 100px;
+    }
+    .move{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 80px;
+        height: 80px;
+        background-color: rgba(238,220,0,.5);
+        cursor: move;
+        display: none;
+    }
+    .good_detail{
+        width: 450px;
+        height: 450px;
+        position: absolute;
+        top: 0;
+        left: 460px;
+        border: 1px solid #ccc;
+        overflow: hidden;
+    }
+    .good_detail img {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+<body>
+<!--小图片-->
+
+<div class = "goods" id="good">
+    <img src="images/goods_item.jpg" alt="">
+    <div class="move"></div>
+</div>
+<!--大图片-->
+<div class="good_detail">
+    <img id="bigImage" src="images/goods_detail.jpg" >
+</div>
+
+<script>
+    window.onload=function () {
+        var goods =document.getElementById("good");
+        var small =goods.children[0];
+        var move =goods.children[1];
+        var bigImage =document.getElementById("bigImage");
+        small.onmousemove= function (event) {
+            move.style.display = "block"
+            event = event||window.event;
+            var x = event.clientX -goods.offsetLeft-move.offsetWidth/2;
+            var y = event.clientY -goods.offsetTop-move.offsetHeight/2;
+            move.style.left= event.clientX+'px';
+            move.style.top = event.clientY+'px'
+            bigImage.style.left =  -x *  goods.offsetWidth /small.offsetWidth + "px";
+            bigImage.style.top =  -y *  goods.offsetHeight /small.offsetHeight + "px";
+        }
+        small.onmouseout= function (event) {
+            //move.style.display ="none";
+        }
+
+    }
+
+</script>
+</body>
+</html>
