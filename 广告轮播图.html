@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>广告轮播图</title>
+    <style>
+        * {margin: 0;padding: 0;}
+        .bannner{
+            width: 790px;
+            height: 340px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .container{
+            width: 790px;
+            height: 340px;
+            position: absolute;
+            top:0;
+            top: 0;
+            overflow: hidden;
+        }
+        .bannner ul{
+            width: 3160px;
+            height: 340px;
+            position: absolute;
+            left: 0px;
+            top:0;
+            list-style: none ;
+        }
+        .bannner ul li{
+            float: left;
+        }
+        .arrow_l{
+            position: absolute;
+            width: 28px;
+            height: 62px;
+            top: 50%;
+            left:0;
+            margin-top: -31px;
+            background-color: rgba(0,0,0,.5);
+            line-height: 62px;
+            text-align: center;
+        }
+        .arrow_r{
+            position: absolute;
+            width: 28px;
+            height: 62px;
+            top: 50%;
+            right:0;
+            margin-top: -31px;
+            background-color: rgba(0,0,0,.5);
+            line-height: 62px;
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="bannner" >
+    <div class="container" id="box">
+    <ul>
+        <li><a href="javascript:;"><img src="images/banner_01.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="images/banner_02.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="images/banner_03.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="images/banner_04.jpg" alt=""></a></li>
+    </ul>
+    <span class="scroll">
+      <a class="arrow_l" href="#"><</a>
+      <a class="arrow_r" href="#">></a>
+    </span>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+       var root = document.getElementById("box");
+       var oUl =root.children[0];
+        var left =0;
+        var fastToSlowTimer;
+        setInterval(move,2000);
+        function move() {
+            clearInterval(fastToSlowTimer) ;
+            var from = left;
+           left -=root.offsetWidth;
+            if(left<-oUl.offsetWidth+790)  {
+                from=790;
+                left =0;
+            }
+           slowMove(oUl,from,left,10);
+
+        }
+        function slowMove(obj,from,to,speed) {
+            var from =from;
+            var to = to;
+            var speed =speed;
+            var obj =obj;
+            fastToSlowTimer =setInterval(fn,30);
+            function fn() {
+                from =from + (to-from)/speed;
+                obj.style.left = from+"px";
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页两侧广告跟随</title>
+    <style>
+        a{
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-top: 50px;
+        }
+        .content{
+            width: 200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!-- 主要的核心是  算出网页滚动后的 scrollTop值， 然后把这个值 赋值给左侧absolute定位的img的top值-->
+<a href="javascript:;"> <img src="images/aside.jpg" alt=""></a>
+<div class="content">
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+
+
+
+    <!--好戏在这里-->
+    <script>
+        var timer = null;
+        var img  = document.getElementsByTagName('a');
+        var tops = img[0].offsetTop;
+        window.onscroll=function () {
+            console.log(getScrollTop());
+            AnimationToPostion(img[0],getScrollTop().top+tops,10);
+        }
+        function getScrollTop() {
+            if (window.pageYOffset!=null){
+                return {
+                    left:window.pageXOffset,
+                    top:window.pageYOffset
+                }
+            }else if(document.compatMode == "CSS1Compat"){
+                return{
+                    left:document.documentElement.scrollLeft,
+                    top:document.documentElement.scrollTop
+                }
+            }else {
+                return{
+                    left:document.body.scrollLeft,
+                    top :document.body.scrollTop
+                }
+            }
+        }
+        function AnimationToPostion(obj,destination,speed) {
+
+            var startPoint =0;
+            clearInterval(timer);
+            timer = setInterval(function () {
+                startPoint = startPoint+(destination-startPoint)/speed;
+                obj.style.top = startPoint+"px";
+            },30);
+        }
+    </script>
+</div>
+</body>
+</html>
