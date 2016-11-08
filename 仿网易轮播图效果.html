@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>仿网易轮播图效果</title>
+    <link rel="stylesheet" type="text/css" href="css/163banner.css">
+    <script src="js/my.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="scroll">
+    <div class="image_container">
+        <div class="image_detail">
+            <div class="images"><a href="javascript:;"><img src="images/small_01.jpg"></a></div>
+            <div class="images"><a href="javascript:;"><img src="images/small_02.jpg"></a></div>
+            <div class="images"><a href="javascript:;"><img src="images/small_03.jpg"></a></div>
+            <div class="images"><a href="javascript:;"><img src="images/small_04.jpg"></a></div>
+            <div class="images"><a href="javascript:;"><img src="images/small_05.jpg"></a></div>
+        </div>
+    </div>
+    <div class="pointer">
+        <span class="pointer_pre"></span>
+        <span class="pointer_next"></span>
+    </div>
+</div>
+<script>
+    window.onload =function () {
+        var scrolls = document.getElementsByClassName("scroll")[0];
+        var imageContain = document.getElementsByClassName("image_detail")[0];
+        var images = imageContain.children;
+        var pointerContainer = document.getElementsByClassName("pointer")[0];
+        var mImageWidth = scrolls.offsetWidth;
+        for (var i = 0; i < images.length; i++) {
+            var span = document.createElement("span");
+            span.className = "pointer_bottom";
+            span.innerHTML = images.length - i;
+            pointerContainer.insertBefore(span, pointerContainer.children[1]);
+        }
+        pointerContainer.children[1].setAttribute("class", "pointer_bottom current");
+        for (var i = 1; i < images.length; i++) {
+            //console.log(mImageWidth);
+            images[i].style.left = mImageWidth + 'px';
+        }
+        var spans = pointerContainer.children;
+        var currentItem = 0;
+        for (var item in spans) {
+            spans[item].onclick = function () {
+                if (this.className == "pointer_next") {
+                    gradientAnimationS(images[currentItem], {left: -mImageWidth});
+                    gradientAnimationS(images[currentItem+1], {left: 0});
+                    // images[currentItem].style.left = parseInt(images[currentItem].offsetLeft-mImageWidth)+"px";
+                    //images[currentItem+1].style.left = parseInt(images[currentItem+1].offsetLeft-mImageWidth)+"px";
+                    console.log(parseInt(images[currentItem + 1].offsetLeft - mImageWidth) + "px");
+                    currentItem++;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

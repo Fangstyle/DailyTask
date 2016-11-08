@@ -1,0 +1,60 @@
+.scroll{
+    width: 330px;
+    height:250px;
+    margin: 100px auto;
+    position: relative;
+    overflow: hidden;
+}
+.image_container{
+    width:330px;
+    height: 220px;;
+
+}
+.image_detail{
+    width: 660px;
+    height: 220px;
+}
+.images{
+    width:330px;
+    height: 220px;;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+.pointer{
+    text-align: center;
+    margin: 5px;
+}
+.pointer_bottom{
+    width: 24px;
+    height: 20px;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+    text-indent: -20em;
+    overflow: hidden;
+    background: url("../images/icon.png") no-repeat -24px -782px;
+}
+.pointer_pre{
+    display: block;
+    width: 30px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    margin-top: -34px;
+    left: 20px;
+    background: url("../images/icon.png") ;
+}
+.pointer_next{
+    display: block;
+    width: 30px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    margin-top: -34px;
+    right: 20px;
+    background: url("../images/icon.png") 0 -40px ;
+}
+.current{
+    background-position: -24px -762px;
+}
