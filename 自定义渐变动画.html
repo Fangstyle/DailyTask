@@ -11,7 +11,7 @@
             top: 30px;
             left:200px;
             background-color: pink;
-            opacity: 1;
+            opacity: 0.2;
         }
     </style>
 </head>
@@ -27,9 +27,9 @@
         $("btn1").onclick = function () {
            // clearInterval(timer);
            // moveToPosition($("ball"), 0);
-            //console.log(getStyle($("ball"),"top"));
+            //console.log(getStyle($("ball"),"top"))    ;
            // gradientAnimation($("ball"),200,"top");
-            gradientAnimationS($("ball"),{width:200 ,height:100},function () {
+            gradientAnimationS($("ball"),{width:200 ,height:100,opacity:0.8},function () {
                 alert(1);
             });
         };
@@ -72,13 +72,47 @@
                //控制判断条件 每次定时器开始的时候为true 然后遍历json时改变
             var flag =true;
             for (var attr in json){
-                var start = parseInt(getStyle(obj,attr));
-                var destination = parseInt(json[attr]);
+                var start,destination;
+
+                if(attr == "opacity")
+                {
+                    destination =parseFloat(json[attr])*100;
+                    start = Math.round(parseInt(getStyle(obj,attr)*100)) || 0;
+                    //log(start);
+                }
+                else
+                {
+                    start = parseInt(getStyle(obj,attr)); // 数值
+                    destination = parseInt(json[attr]);
+                }
+
                 var step = (destination - start)/10;
                 step= step>0 ? Math.ceil(step) : Math.floor(step);
-                obj.style[attr] = start + step+"px";
-                console.log(obj.style[attr]);
-                if (destination !=parseInt(obj.style[attr])){
+
+                if(attr == "opacity")  // 判断用户有没有输入 opacity
+                {
+                    if("opacity" in obj.style)  // 判断 我们浏览器是否支持opacity
+                    {
+                        // obj.style.opacity
+                        obj.style.opacity = (start + step) /100;
+                       // console.log(obj.style.opacity);
+                    }
+                    else
+                    {  // obj.style.filter = alpha(opacity = 30)
+                        obj.style.filter = "alpha(opacity = "+(start + step)* 10+")";
+
+                    }
+                }
+                else if(attr == "zIndex")
+                {
+                    obj.style.zIndex = json[attr];
+                }
+                else
+                {
+                    obj.style[attr] = start + step+"px";
+                }
+
+                if (start !=destination){
                     flag= false;
                 }
             }
