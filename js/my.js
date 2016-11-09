@@ -59,7 +59,7 @@ function gradientAnimationS(obj,json,fn) {
                 fn();
             }
         }
-    },30);
+    },10);
 }
 /*
  * 获取内联样式 ie obj.currentStyle[]   标准 window.getComputedStyle(obj,null)[]
