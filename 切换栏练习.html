@@ -68,7 +68,7 @@
 
 <!--JS写在地步便于观看-->
 <script>
-    window.onload = function () {
+   /* window.onload = function () {
         var oDiv = document.getElementsByClassName("details");
        // alert(typeof oDiv);   oDiv是一个数组
         var content = oDiv[0].getElementsByTagName("div");
@@ -85,7 +85,35 @@
                 //alert(lastSelected);
             }
         }
-    }
+    }*/
+
+   /* 函数闭包形式进行 封装， 并且添加 滑动控制，停留0.3秒出发切换效果 减缓服务器压力*/
+   window.onload = function () {
+       var oDiv = document.getElementsByClassName("details");
+       // alert(typeof oDiv);   oDiv是一个数组
+       var content = oDiv[0].getElementsByTagName("div");
+       var menuItem = document.getElementsByTagName("li");
+       var lastSelected = 0;
+       for (var i=0;i<menuItem.length;i++){
+           //menuItem[i].selecting = i;
+           var timer;
+           menuItem[i].onmouseover = seleteItem(i);
+           menuItem[i].onmouseout = clearInterval(timer);
+       }
+       function seleteItem (num) {
+           return function () {
+               clearTimeout(timer);
+               timer = setInterval(function () {
+                   menuItem[lastSelected].className = "";
+                   content[lastSelected].className ="";
+                   menuItem[num].className="selected";
+                   lastSelected = num;
+                   content[num].className ="div_selected";
+               },300);
+               //alert(lastSelected);
+           }
+       }
+   }
 </script>
 </body>
 </html>
