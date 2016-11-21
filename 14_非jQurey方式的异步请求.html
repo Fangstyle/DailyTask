@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原始异步请求方式，非JQuerry方式的AJAX请求</title>
+    <script>
+        window.onload = function () {
+
+            var messageInfo = document.querySelector("#message");
+            var submit = document.querySelector("#btn");
+            submit.onclick = function () {
+                var userName = document.getElementsByTagName('input')[0].value;
+                var passWord = document.getElementsByTagName('input')[1].value;
+                //alert(userName + passWord);
+                var mRequestBody =null;
+                // Step1: 创建请求对象
+                if(window.XMLHttpRequest){
+                    //非IE 浏览器
+                    mRequestBody = new XMLHttpRequest();
+                }else{
+                    // IE浏览器
+                    mRequestBody =  new ActiveXObject('Microsoft.XMLHTTP');
+                }
+               var url = './php/14_text.php';
+                //var url = 'F:/WorkSpace/DailyTask/php/14_text.php';
+                var params ='userName='+ encodeURIComponent(userName) +'&passWord =' +passWord;
+                //stop 2:
+
+                mRequestBody.open('post',url,true);
+                mRequestBody.send(params);
+                mRequestBody.onReadystatechange= function () {
+                    if(mRequestBody.readyState ==4){
+                        if (mRequestBody.responseType == 200){
+                            messageInfo.innerHTML = mRequestBody.responseText;
+                            //14_非jQurey方式的异步请求
+                        }
+                    }
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+<form >
+    <label for="Account">用户名</label><input type="text" id="Account" >
+    </br>
+    <label >密码<input type="text" id="PassWord" ></label>
+    </br>
+    <input type="button" value="提交" id="btn">
+    <div id="message"> </div>
+</form>
+</body>
+</html>
