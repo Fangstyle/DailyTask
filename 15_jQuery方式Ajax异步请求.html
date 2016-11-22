@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax异步请求jQuery方式</title>
+</head>
+<script src="js/jquery-1.8.2.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+      $('input').on('click',function () {
+         $.ajax({
+             //url : 'http://tq.360.cn/api/weatherquery/querys?app=tq360&code=101010200&t=1479803120588&c=1479904130788&_=1479803120591',
+             url:"http://lt.matouit.com/index.php?s=User/getUserInfo&token=1",
+             async:false,
+             // url:'http://www.hcharts.cn/datas/jsonp.php?filename=new-intraday.json&callback=?',
+             dataType:'jsonp',
+             jsonp:'renderData',
+             type:'get',
+             success:function (renderData) {
+                 console.log(renderData );
+             },erro:function (e) {
+                 console.log("fail" +e);
+             }
+         })
+      })
+    })
+</script>
+<body>
+<form >
+    <input type="button" value="点击获取数据">
+</form>
+</body>
+</html>

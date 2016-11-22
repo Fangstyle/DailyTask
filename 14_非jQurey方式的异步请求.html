@@ -21,13 +21,13 @@
                     // IE浏览器
                     mRequestBody =  new ActiveXObject('Microsoft.XMLHTTP');
                 }
-               var url = './php/14_text.php';
-                //var url = 'F:/WorkSpace/DailyTask/php/14_text.php';
-                var params ='userName='+ encodeURIComponent(userName) +'&passWord =' +passWord;
+               //var url = 'http://192.168.1.108:81/www/14_text.php';
+                var url = 'https://sp0.baidu.com/9_Q4sjW91Qh3otqbppnN2DJv/pae/channel/data/asyncqury?cb=jQuery110205035551783693204_1479779388200&appid=4001&com=zhongtong&nu=701218654409&vcode=&token=&_=1479779388208+';
+                //var params ='userName='+ encodeURIComponent(userName) +'&passWord=' +passWord;
                 //stop 2:
 
-                mRequestBody.open('post',url,true);
-                mRequestBody.send(params);
+                mRequestBody.open('get',url,true);
+                mRequestBody.send(null);
                 mRequestBody.onReadystatechange= function () {
                     if(mRequestBody.readyState ==4){
                         if (mRequestBody.responseType == 200){

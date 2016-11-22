@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跨域访问问题</title>
+    <script>
+        window.onload = function () {
+            var btn = document.getElementById("btn");
+            btn.onclick = function () {
+                //var url = "http://lt.matouit.com/index.php?s=User/getUserInfo";
+                //var url = "http://tq.360.cn/api/weatherquery/querys?app=tq360&code=101010200&t=1479803120588&c=1479904130788&_jsonp=finish&_=1479803120591";
+                var script = document.createElement('script');
+                script.src =url;
+                document.body.appendChild(script);
+            }
+            function  finish(data) {
+                console.log(data);
+            }
+        }
+    </script>
+</head>
+
+<body>
+<input type="button" id="btn" value="点击获取数据">
+</body>
+</html>
