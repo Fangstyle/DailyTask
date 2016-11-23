@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索框提示</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        .box{
+            width: 260px;
+            margin: 100px auto;
+        }
+        .box input{
+            text-indent: 2px;
+        }
+        .box ul{
+            margin-top: 20px;
+            list-style: none;
+        }
+        .box ul li{
+            background-color: #c1c1c1;
+        }
+    </style>
+    <script src="js/jquery-1.8.2.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+           $("#search").on("keyup",function () {
+               var searchTxt = $("#search").val();
+               var url ='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+searchTxt;
+               querry(url);
+           });
+            function querry(url) {
+                var ul  =$("#container");
+                ul.html('');
+                $.ajax({
+                    type:'get',
+                    async:true,
+                    url:url,
+                    dataType:"jsonp",
+                    jsonp:"cb",/*百度接口 后台传输jsonp 只能是cb 不可以任意*/
+                    success: function (data) {
+                        var dataList = data.s;
+                        for(var i =0 ; i<dataList.length;i++){
+                            var li = $("<li></li>");
+                            li.html( dataList[i]);
+                            ul.append(li);
+                        }
+
+                    },
+                    error:function(data){
+                        console.log("fail");
+                    }
+                })
+            }
+        });
+    </script>
+</head>
+<body>
+<div class="box">
+    <form>
+        <input id="search" type="text">
+        <button id="btn">确定</button>
+    </form>
+    <ul id="container">
+    </ul>
+</div>
+</body>
+
+
+</html>
