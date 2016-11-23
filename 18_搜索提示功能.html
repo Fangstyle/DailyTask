@@ -34,6 +34,7 @@
             function querry(url) {
                 var ul  =$("#container");
                 ul.html('');
+
                 $.ajax({
                     type:'get',
                     async:true,
@@ -47,11 +48,16 @@
                             li.html( dataList[i]);
                             ul.append(li);
                         }
-
+                        ul.show();
                     },
                     error:function(data){
                         console.log("fail");
                     }
+                })
+                ul.on("click","li",function () {
+                    $("#search").val($(this).html());
+                    ul.hide();
+                    ul.html('');
                 })
             }
         });
