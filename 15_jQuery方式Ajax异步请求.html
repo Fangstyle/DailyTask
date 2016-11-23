@@ -9,10 +9,8 @@
     $(document).ready(function () {
       $('input').on('click',function () {
          $.ajax({
-             //url : 'http://tq.360.cn/api/weatherquery/querys?app=tq360&code=101010200&t=1479803120588&c=1479904130788&_=1479803120591',
-             url:"http://lt.matouit.com/index.php?s=User/getUserInfo&token=1",
+              url :"http://tq.360.cn/api/weatherquery/querys?app=tq360&code=101010200&t=1479803120588&c=1479904130788&_=1479803120591&_jsonp=?",
              async:false,
-             // url:'http://www.hcharts.cn/datas/jsonp.php?filename=new-intraday.json&callback=?',
              dataType:'jsonp',
              jsonp:'renderData',
              type:'get',
