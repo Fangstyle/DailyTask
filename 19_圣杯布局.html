@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圣杯布局</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 1220px;
+            margin: 0 auto;
+        }
+        /*外部的盒子 随着浏览器窗口的变化为变化 */
+        /*内部 mid的盒子继承 父亲的宽度（继承无padding）*/
+        /*左右两个盒子 浮动到 父盒子的padding 出*/
+        .box{
+            min-width: 200px;
+            height:200px;
+            padding: 0 200px;
+            background-color: #fff;
+        }
+        .left{
+            float: left;
+            width: 200px;
+            height: 200px;
+            background-color: #f60;
+            margin-left: -200px;
+        }
+        .center{
+            float: left;
+            height: 200px;
+            background-color: #6ff;
+        }
+        .right{
+            float: right;
+            width: 200px;
+            height: 200px;
+            background-color: #6f6;
+            margin-right: -200px;
+        }
+       
+    </style>
+</head>
+<body>
+
+<div class="box">
+
+    <div class="left"></div>
+    <div class="center"></div>
+    <div class="right"></div>
+</div>
+</body>
+</html>
