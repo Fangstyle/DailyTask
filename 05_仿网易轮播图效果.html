@@ -34,6 +34,8 @@
         var pointerContainer = document.getElementsByClassName("pointer")[0];
        // 每一个图片切换 所走的距离 也就是图片的宽
         var mImageWidth = scrolls.offsetWidth;
+        var preBtn = document.getElementsByClassName("pointer_pre")[0];
+        var nxtBtn  = document.getElementsByClassName("pointer_next")[0];
         //顶部图片切换 当前显示的图片索引
         var currentItem = 0;
         //底部选中的 滚动条索引
@@ -51,7 +53,21 @@
         imageContain.onmousemove = function () {
             clearInterval(autoTimer);
         }
+        preBtn.onmousemove = function () {
+            clearInterval(autoTimer);
+        }
+        nxtBtn.onmousemove = function () {
+            clearInterval(autoTimer);
+        }
         imageContain.onmouseout =function () {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(autoPlay,3000);
+        }
+        preBtn.onmouseout =function () {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(autoPlay,3000);
+        }
+        nxtBtn.onmouseout =function () {
             clearInterval(autoTimer);
             autoTimer = setInterval(autoPlay,3000);
         }
