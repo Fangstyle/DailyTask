@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象版的矩形绘制</title>
+    <script src="js/canvas/FangstyleRect.js"></script>
+</head>
+<body>
+<canvas id="left"></canvas>
+<canvas id="right"></canvas>
+<script>
+    window.onload = function () {
+        var canvos1 = document.getElementById("left");
+        var canvos2 = document.getElementById("right");
+        var context1 = canvos1.getContext("2d");
+        var context2 = canvos2.getContext("2d");
+        canvos1.width = "600";
+        canvos1.height = "600";
+        canvos1.style.border = "1px solid #ccc";
+
+        canvos2.width = "600";
+        canvos2.height = "600";
+        canvos2.style.border = "1px solid #ccc";
+        var rect1 = new FangstyleRect({
+            x: 100,				// 矩形x坐标
+            y: 100,
+            w: 100,
+            h: 100,
+            opacity: .6,	   //透明度
+            rotation: 60,	   //旋转角度
+            scaleX: 1,		   //放大缩小的倍数
+            scaleY: 1,
+            fillStyle: 'purple',	//填充的样式
+            strokeStyle: 'yellow'
+        });
+        rect1.render(context1);
+        to(rect1);
+        function to( obj ) {
+            setInterval(function () {
+                context1.clearRect( 0,  0 , canvos1.width, canvos1.height);
+                context2.clearRect( 0,  0 , canvos2.width, canvos2.height);
+                obj.x+=10;
+                obj.render(context1);
+                context2.drawImage(canvos1,0,0);
+            },100)
+        }
+    }
+</script>
+</body>
+</html>

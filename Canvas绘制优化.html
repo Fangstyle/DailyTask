@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas绘制优化</title>
+    <script src="js/canvas/FangstyleRect.js"></script>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="cavsElem">
+        你的浏览器不支持canvas，请升级浏览器
+    </canvas>
+</div>
+<script>
+    window.onload = function () {
+        var canvas = document.querySelector( '#cavsElem' );
+        var ctx = canvas.getContext( '2d' );
+
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = "1px solid #000";
+
+        var hideCanvas = document.createElement("canvas");
+        hideCanvas.width = canvas.width;
+        hideCanvas.height = canvas.height;
+        var hideContext = hideCanvas.getContext("2d");
+
+        for(var i =0;i<100;i++){
+            var renda = new FangstyleRect({
+                x:Math.random()*100,
+                x:Math.random()*100,
+                w:Math.random()*100,
+                h:Math.random()*100,
+                opacity:Math.random(),
+                rotation: Math.random() * 90,
+                fillStyle:"blue"
+            })
+            renda.render(hideContext);
+        }
+        ctx.drawImage(hideCanvas,0,0);
+    }
+</script>
+</body>
+</html>
