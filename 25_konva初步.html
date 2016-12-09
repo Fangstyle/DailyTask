@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>konva初步</title>
+    <script src="lib/konva/konva.js"></script>
+</head>
+<body>
+<!--放置konva舞台的容器-->
+<div id="container">
+
+</div>
+<script>
+    /*   Konva的舞台的层次结构
+    *                       Stage
+                             |
+                     +------+------+
+                    |             |
+                  Layer         Layer
+                   |             |
+                   +-----+-----+     Shape
+                   |           |
+                Group       Group
+                  |           |
+                 +       +---+---+
+                |       |       |
+              Shape   Group    Shape
+    * */
+
+    /*Step1： 创建舞台*/
+    var stage = new Konva.Stage({
+        container : 'container',
+        width : window.innerWidth   ,
+        height : window.innerHeight
+    })
+    /*Step2：创建层*/
+    var layer = new Konva.Layer();
+
+    /*Step3：将layer（图层）添加到stage(舞台)上去*/
+    stage.add( layer );
+
+
+/*Step4：创建Group*/
+    var group = new Konva.Group({
+        x:100,
+        y:100,
+    })
+
+    /*step5 ： 实现自己的逻辑结构 并添加到group中 然后添加到layer层中， 当然视情况而定也可以没有group层*/
+    var renda = new Konva.Rect({
+        x : 0,
+        y : 0,
+        opacity: .4,
+        rotation : 20 ,
+        width : 100 ,
+        height : 200 ,
+        scaleX : 1.2,
+        scaleY : 1.1,
+        draggable :true,
+        fill : "blue",
+    })
+
+    group .add(renda);
+    layer.add(renda);
+    layer.draw();
+</script>
+</body>
+</html>
