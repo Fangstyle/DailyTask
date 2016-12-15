@@ -80,11 +80,12 @@ BaiStar.prototype = {
         /*鼠标悬浮核离开*/
         /*前面我们讲了排他思想 -- 针对整体进行编程*/
         this.dom.on('mouseenter',function(){
-            that.dom.addClass('is-hover')
+            that.dom.addClass('is-hover');
         }).on('mouseleave',function(){
-            that.dom.removeClass('is-hover')
+            that.dom.removeClass('is-hover');
         }).on('click',function(){
-            that.dom.toggleClass('selected')
+            that.dom.toggleClass('selected');
+            window.location = " 31_baiduDetail.html"+"?num="+that.index;
         })
     }
 
