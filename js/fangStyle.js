@@ -323,21 +323,7 @@ fangStyle.extend(fangStyle, {
         context = context || document;
         return context.querySelectorAll(selector);
     },
-    addClass: function (target, classNames) {
-        var doms = fangStyle.$all(target);
-        //如果获取的是集合
-        if (doms.length) {
-            for (var i = 0, len = doms.length; i < len; i++) {
-                addName(doms[i]);
-            }
-            //如果获取的不是集合
-        } else {
-            addName(doms);
-        }
-        function addName(dom) {
-            dom.className = dom.className + ' ' + classNames;
-        }
-    }
+
 });
 
 /*常用的工具封装*/
@@ -369,33 +355,86 @@ fangStyle.extend(fangStyle, {
 
 /*dom常用封装*/
 fangStyle.extend(fangStyle, {
-    setStyle: function (dom ,key ,value) {
+    setStyle: function (dom, key, value) {
         dom.style[key] = value;
     },
-    getStyle: function (dom ,key) {
+    getStyle: function (dom, key) {
         if (dom.currentStyle) {
             return dom.currentStyle[key];
         } else {
             var str = getComputedStyle(dom, null)[key];
-            return str ;
+            return str;
         }
     },
     css: function (target, key, value) {
         var dom = fangStyle.isString(target) ? fangStyle.$all(target) : target;
         if (dom.length) {
-            for (var i = 0; i < dom.length ; i++) {
+            for (var i = 0; i < dom.length; i++) {
                 if (value) {
-                    fangStyle.setStyle(dom[i],key,value);
+                    fangStyle.setStyle(dom[i], key, value);
                 } else {
-                    return fangStyle.getStyle(dom[i] ,key);
+                    return fangStyle.getStyle(dom[i], key); //存在问题  就是只能返回一个数据 而不是一个数组
                 }
             }
         } else {
             if (value) {
-                fangStyle.setStyle(dom ,key ,value);
+                fangStyle.setStyle(dom, key, value);
             } else {
-                 return fangStyle.getStyle(dom,key);
+                return fangStyle.getStyle(dom, key);
             }
         }
-    }
+    },
+    addClass: function (target, classNames) {
+        if(this.isString(target)){
+            var doms = fangStyle.$all(target);
+        }
+        //如果获取的是集合
+        if (doms.length) {
+            for (var i = 0, len = doms.length; i < len; i++) {
+                addName(doms[i]);
+            }
+            //如果获取的不是集合
+        } else {
+            addName(doms);
+        }
+        function addName(dom) {
+            dom.className = dom.className + ' ' + classNames;
+        }
+    },
+    removeClass: function (target ,classNames) {
+        if(this.isString(target)){
+            var dom = fangStyle.$all(target);
+        }
+        if(dom.length){
+            for (var i = 0, len = dom.length; i < len; i++) {
+                removes(dom[i] ,classNames);
+            }
+            //如果获取的不是集合
+        } else {
+            removes(dom ,classNames);
+        }
+        function removes(dom , className) {
+            dom.className = dom.className.replace(" "+className,"");
+            dom.className = dom.className.replace(className+" ","");
+        }
+    },
+    hasClass:function(target,className){
+        if(this.isString(target)){
+            var doms = fangStyle.$all(target);
+        }
+        var flag = true;
+        if(doms.length){
+            for(var i= 0,len=doms.length;i<len;i++){
+                flag = flag && check(doms[i],className)
+            }
+        }else{
+            flag = flag && check(target,className);
+        }
+        return flag;
+        //判定单个元素
+        function check(target,name){
+            return -1<(" "+target.className+" ").indexOf(" "+name+" ")
+        }
+    },
+
 });
