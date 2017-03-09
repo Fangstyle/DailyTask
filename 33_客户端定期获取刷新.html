@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>服务器推送数据-客户端定期查询</title>
+</head>
+<body>
+<script>
+    var SEAVER_URL="index.php";
+    window.onload = function () {
+        startListenServer();
+    }
+    function startListenServer() {
+        //尝试连接到服务器中
+        var  eventSouce = new EventSource(SEAVER_URL);
+        eventSouce.open = openHandler;
+        eventSouce.err = errorHandler;
+        eventSouce.onmessage = messageHandler;
+        eventSouce.addEventListener("服务器的key",onSomethingListener)
+    }
+
+    function openHandler(event) {
+        //连接成功
+    }
+    function errorHandler(event) {
+        //连接失败
+    }
+    function messageHandler(event) {
+        //连接成功后的回调，处理事件
+        event[''];//数据通过event中根据服务器定义的key获取
+    }
+    function onSomethingListener() {
+        //可以监听服务器某个事件，服务器给的key
+    }
+
+</script>
+</body>
+</html>
