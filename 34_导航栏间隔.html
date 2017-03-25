@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>导航栏间隔</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        .nav{
+            width:560px;
+            height: 50px;
+            font:bold 12px/50px "Courier New", Courier, monospace, "Times New Roman", Times, serif, Arial, Helvetica, sans-serif, Verdana;
+            margin: 100px auto;
+            background-color: #f65f57;
+            border-radius: 20px;
+        }
+        .nav a {
+            font:bold 12px/50px "Courier New", Courier, monospace, "Times New Roman", Times, serif, Arial, Helvetica, sans-serif, Verdana;
+            display: inline-block;
+            transition: all 1s ease 0s;
+        }
+        .nav a:hover{
+            transform: rotate(30deg);
+            text-decoration: none;
+        }
+        .nav li {
+            display: inline-block;
+            padding:0 16px;
+            font-size: 13px;
+            /*本文重点  */
+            background:linear-gradient(to bottom,#af15cd,#962BCD) no-repeat right/1px 16px ;
+            /*等价于*/
+           /* background-image:linear-gradient(to bottom,#af15cd,#962BCD);
+
+            background-repeat:no-repeat;
+
+            background-position:right center; !*省略的值默认为center*!
+
+            background-size:1px 15px;*/
+        }
+        .nav li:last-child{
+            background:none;
+        }
+    </style>
+</head>
+<body>
+<ul class="nav">
+    <li><a href="">Home</a></li>
+    <li><a href="">About Me</a></li>
+    <li><a href="">Portfolio</a></li>
+    <li><a href="">Blog</a></li>
+    <li><a href="">Resources</a></li>
+    <li><a href="">Contact Me</a></li>
+</ul>
+</body>
+</html>
